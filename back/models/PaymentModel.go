@@ -6,41 +6,41 @@ import (
 )
 
 type Payment struct {
-	Transaction   string `json:"transaction"`
-	Request_id    string `json:"request_id"`
-	Currency      string `json:"currency"`
-	Provider      string `json:"provider"`
-	Amount        int    `json:"amount"`
-	Payment_dt    int    `json:"payment_dt"`
-	Bank          string `json:"bank"`
-	Delivery_cost int    `json:"delivery_cost"`
-	Goods_total   int    `json:"goods_total"`
-	Custom_fee    int    `json:"custom_fee"`
+	Transaction   *string `json:"transaction"`
+	Request_id    *string `json:"request_id"`
+	Currency      *string `json:"currency"`
+	Provider      *string `json:"provider"`
+	Amount        *int    `json:"amount"`
+	Payment_dt    *int    `json:"payment_dt"`
+	Bank          *string `json:"bank"`
+	Delivery_cost *int    `json:"delivery_cost"`
+	Goods_total   *int    `json:"goods_total"`
+	Custom_fee    *int    `json:"custom_fee"`
 }
 
 func (p *Payment) MissingFields() (errField error) {
 	errField = errors.New("missing field")
 
 	switch {
-	case p.Transaction == "":
+	case p.Transaction == nil:
 		return
-	case p.Request_id == "":
+	case p.Request_id == nil:
 		return
-	case p.Currency == "":
+	case p.Currency == nil:
 		return
-	case p.Provider == "":
+	case p.Provider == nil:
 		return
-	case p.Amount == 0:
+	case p.Amount == nil:
 		return
-	case p.Payment_dt == 0:
+	case p.Payment_dt == nil:
 		return
-	case p.Bank == "":
+	case p.Bank == nil:
 		return
-	case p.Delivery_cost == 0:
+	case p.Delivery_cost == nil:
 		return
-	case p.Goods_total == 0:
+	case p.Goods_total == nil:
 		return
-	case p.Custom_fee == 0:
+	case p.Custom_fee == nil:
 		return
 	default:
 		return nil

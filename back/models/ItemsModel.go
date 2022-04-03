@@ -3,44 +3,44 @@ package models
 import "errors"
 
 type Items struct {
-	Chrt_id      int    `json:"chrt_id"`
-	Track_number string `json:"track_number"`
-	Price        int    `json:"price"`
-	Rid          string `json:"rid"`
-	Name         string `json:"name"`
-	Sale         int    `json:"sale"`
-	Size         string `json:"size"`
-	Total_price  int    `json:"total_price"`
-	Nm_id        int    `json:"nm_id"`
-	Brand        string `json:"brand"`
-	Status       int    `json:"status"`
+	Chrt_id      *int    `json:"chrt_id"`
+	Track_number *string `json:"track_number"`
+	Price        *int    `json:"price"`
+	Rid          *string `json:"rid"`
+	Name         *string `json:"name"`
+	Sale         *int    `json:"sale"`
+	Size         *string `json:"size"`
+	Total_price  *int    `json:"total_price"`
+	Nm_id        *int    `json:"nm_id"`
+	Brand        *string `json:"brand"`
+	Status       *int    `json:"status"`
 }
 
 func (item *Items) MissingFields() (errField error) {
 	errField = errors.New("missing field")
 
 	switch {
-	case item.Chrt_id == 0:
+	case item.Chrt_id == nil:
 		return
-	case item.Track_number == "":
+	case item.Track_number == nil:
 		return
-	case item.Price == 0:
+	case item.Price == nil:
 		return
-	case item.Rid == "":
+	case item.Rid == nil:
 		return
-	case item.Name == "":
+	case item.Name == nil:
 		return
-	case item.Sale == 0:
+	case item.Sale == nil:
 		return
-	case item.Size == "":
+	case item.Size == nil:
 		return
-	case item.Total_price == 0:
+	case item.Total_price == nil:
 		return
-	case item.Nm_id == 0:
+	case item.Nm_id == nil:
 		return
-	case item.Brand == "":
+	case item.Brand == nil:
 		return
-	case item.Status == 0:
+	case item.Status == nil:
 		return
 	default:
 		return nil
