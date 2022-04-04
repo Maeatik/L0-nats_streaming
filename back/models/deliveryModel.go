@@ -5,6 +5,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// Delivery - структура таблицы delivery. Каждое поле имеет ссылочный тип,
+//чтобы проверять на наличие в json файле нужную структуру
 type Delivery struct {
 	Name    *string `json:"name"`
 	Phone   *string `json:"phone"`
@@ -15,6 +17,7 @@ type Delivery struct {
 	Email   *string `json:"email"`
 }
 
+// MissingFields Проверка на наличие записи того или иного поля
 func (d *Delivery) MissingFields() (errField error) {
 	errField = errors.New("missing field")
 
@@ -33,6 +36,7 @@ func (d *Delivery) MissingFields() (errField error) {
 		return
 	case d.Email == nil:
 		return
+	//Если все поля имеют запись и ошибок не возникло - возвращается отсутствие ошибки
 	default:
 		return nil
 	}

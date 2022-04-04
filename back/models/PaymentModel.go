@@ -5,6 +5,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
+// Payment - структура таблицы items. Каждое поле имеет ссылочный тип,
+//чтобы проверять на наличие в json файле нужную структуру
 type Payment struct {
 	Transaction   *string `json:"transaction"`
 	Request_id    *string `json:"request_id"`
@@ -18,6 +20,7 @@ type Payment struct {
 	Custom_fee    *int    `json:"custom_fee"`
 }
 
+// MissingFields Проверка на наличие записи того или иного поля
 func (p *Payment) MissingFields() (errField error) {
 	errField = errors.New("missing field")
 
@@ -42,6 +45,7 @@ func (p *Payment) MissingFields() (errField error) {
 		return
 	case p.Custom_fee == nil:
 		return
+	//Если все поля имеют запись и ошибок не возникло - возвращается отсутствие ошибки
 	default:
 		return nil
 	}

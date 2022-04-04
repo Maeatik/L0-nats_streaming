@@ -2,6 +2,8 @@ package models
 
 import "errors"
 
+// Items - структура таблицы items. Каждое поле имеет ссылочный тип,
+//чтобы проверять на наличие в json файле нужную структуру
 type Items struct {
 	Chrt_id      *int    `json:"chrt_id"`
 	Track_number *string `json:"track_number"`
@@ -16,6 +18,7 @@ type Items struct {
 	Status       *int    `json:"status"`
 }
 
+// MissingFields Проверка на наличие записи того или иного поля
 func (item *Items) MissingFields() (errField error) {
 	errField = errors.New("missing field")
 
@@ -42,6 +45,7 @@ func (item *Items) MissingFields() (errField error) {
 		return
 	case item.Status == nil:
 		return
+	//Если все поля имеют запись и ошибок не возникло - возвращается отсутствие ошибки
 	default:
 		return nil
 	}
